@@ -18,7 +18,7 @@
       text-align: center;
       text-transform: uppercase;
       color: green;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.1em;
     }
 
     body {
@@ -28,17 +28,20 @@
   </style>
 </head>
 <body>
-  <h1>Oslo</h1>
+  <h1>Geta Digital</h1>
   <div id="map"></div>
   <script>
   var marker;
-
+      //initializes map on load
       function initMap() {
+
+        // Map options
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
-          center: {lat:59.9139,lng:10.7522}
+          center: {lat:59.910043,lng:10.739498}
         });
 
+        //Marker options
         marker = new google.maps.Marker({
           map: map,
           draggable: true,
@@ -48,6 +51,7 @@
         marker.addListener('click', toggleBounce);
       }
 
+      //Marker animations
       function toggleBounce() {
         if (marker.getAnimation() !== null) {
           marker.setAnimation(null);
