@@ -8,7 +8,7 @@
   <title>Geta Test</title>
   <style>
     #map {
-      height: 400px;
+      height: 600px;
       width: 80%;
       margin: 0 auto;
       border: 5px solid green;
@@ -49,16 +49,42 @@
           position: {lat:59.910043,lng:10.739498},
         });
         marker.addListener('click', toggleBounce);
+
+
+        // When the user clicks the marker, an info window opens.
+        var contentString = '<div id="content">'+
+                            '<div id="siteNotice">'+
+                            '</div>'+
+                            '<h1 id="firstHeading" class="firstHeading">Geta Digital</h1>'+
+                            '<div id="bodyContent">'+
+                            '<p><b>Geta Digital</b>, builds online store in 11 countries for <b>Varner Ibrahimović</b> ' +
+                            '<p>Visit their website, <a href="https://getadigital.com/">'+
+                            'https://getadigital.com/</a> '+
+                            '</div>'+
+                            '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
       }
 
-      //Marker animations
-      function toggleBounce() {
-        if (marker.getAnimation() !== null) {
+        //Marker animations
+        function toggleBounce() {
+          if (marker.getAnimation() !== null) {
           marker.setAnimation(null);
-        } else {
+          } else {
           marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
         }
-      }
+
+        //Marker timeout
+        setTimeout(function(){
+           marker.setAnimation(null); }, 750);
+
   </script>
   <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfyIyDnjr3b7pJpPl6GA3TnSIWHxXCh2Q&callback=initMap">
